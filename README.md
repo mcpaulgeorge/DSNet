@@ -7,8 +7,8 @@ The core idea is **moire-driven sparsity**: moire-corrupted regions tend to trig
 
 Related figures from the paper:
 
-- [Motivation figure](figure/motivation.tiff)
-- [Network overview](figure/network.tiff)
+- [Motivation figure](figure/motivation.pdf)
+- [Network overview](figure/network.pdf)
 
 ## Method Overview
 
