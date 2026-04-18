@@ -1,0 +1,39 @@
+name: DSNet
+model_type: RAWRGBIDModel
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+manual_seed: 0
+
+datasets:
+  test:
+    name: TMM22
+    type: RAWRGBIDPairedImageDataset
+    dataroot_gt_rgb: ./dataset/raw_moire_image_dataset/testset/gt_RGB
+    dataroot_gt_raw: ./dataset/raw_moire_image_dataset/testset/gt_RAW_npz
+    dataroot_lq_rgb: ./dataset/raw_moire_image_dataset/testset/moire_RGB
+    dataroot_lq_raw: ./dataset/raw_moire_image_dataset/testset/moire_RAW_npz
+    io_backend:
+      type: disk
+    batch_size: 1
+    num_worker: 8
+
+# network structures
+network_g:
+  type: DSNet
+
+
+# path
+path:
+  pretrain_network_g: ./experiments/DSNet/models/net_g_160000.pth # pretrained model path
+  strict_load_g: false
+  param_key_g: 'params_ema'
+
+
+# validation settings
+val:
+  save_img: true
+  metrics:
+    psnr:
+      type: calculate_vd_psnr
+    ssim:
+      type: calculate_vd_ssim
+
